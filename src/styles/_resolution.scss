@@ -1,0 +1,7 @@
+@import "vars";
+
+@mixin mini {
+  @media screen and (max-width: $mini-max-width) {
+    @content;
+  }
+}

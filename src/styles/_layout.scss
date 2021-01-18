@@ -1,0 +1,55 @@
+@import './vars';
+@import './resolution';
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  width: $header-width;
+	height: $header-height;
+  position: fixed;
+  z-index: 1;
+}
+
+nav {
+  width: $nav-width;
+  height: $nav-height;
+  max-height: calc(#{$nav-height} - #{$header-height});
+  position: fixed;
+  top: $header-height;
+  @include mini {
+    z-index: 3;
+    top: 0;
+    max-height: none;
+  }
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  padding-left: 0;
+  padding-top: $header-height;
+  box-sizing: border-box;
+  &.menu-open {
+    padding-left: $nav-width;
+  }
+  @include mini {
+    &.menu-open {
+      overflow: hidden;
+      padding-left: 0;
+      &::after {
+        content: '';
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        background: rgba(0, 0, 0, 0.7);
+      }
+    }
+
+  }
+}
